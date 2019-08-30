@@ -1,3 +1,5 @@
+#! /bin/bash
+
 # assets/javascript/application.js
 read -d '' application_js << EOF
 import { Application } from "stimulus"
