@@ -1,0 +1,160 @@
+# assets/javascript/application.js
+read -d '' application_js << EOF
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+EOF
+
+# assets/javascript/controllers/application_controller.js
+read -d '' application_controller << EOF
+import { Controller } from "stimulus"
+
+export default class extends Controller {
+  connect() {
+    console.info('Stimulus Connected.')
+  }
+}
+EOF
+
+# assets/stylesheets/application.css
+read -d '' application_css << EOF
+@import \"tailwind.pcss\";
+EOF
+
+# assets/stylesheets/tailwind.pcss
+read -d '' tailwind_pcss << EOF
+@tailwind base;
+@tailwind components;
+/* custom stuff here */
+@tailwind utilities;
+EOF
+
+# public/index.html
+read -d '' index_html << EOF
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>$1</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="stylesheets/application.css">
+  <script type="text/javascript" src="javascripts/application.js"></script>
+</head>
+
+<body class="bg-white text-gray-900 font-sans antialiased" data-controller="application">
+  <h1 class="text-2xl text-center">Find me in /public/index.html</h1>
+</body>
+</html>
+EOF
+
+# .gitignore
+read -d '' gitignore << EOF
+.DS_Store
+node_modules
+public/stylesheets/*
+public/javascripts/*
+EOF
+
+# netlify.toml
+read -d '' netlify_toml << EOF
+[build]
+  command = "yarn build"
+  publish = "public"
+  functions = "functions"
+EOF
+
+# postcss.config.js
+read -d '' postcss_config << EOF
+module.exports = {
+  plugins: [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+    process.env.NODE_ENV === 'production' && require('@fullhuman/postcss-purgecss')({
+      content: [
+        './public/*.html'
+      ],
+      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+      whitelist: ['tab-active']
+    }),
+    process.env.NODE_ENV === 'production' && require('cssnano')({
+      preset: [
+        'default',
+        { "discardComments": { "removeAll": true } }
+      ]
+    })
+  ]
+}
+EOF
+
+# webpack.config.js
+read -d '' webpack_config << EOF
+const path = require('path');
+
+module.exports = {
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  },
+  devtool: 'source-map',
+  entry: './assets/javascripts/application.js',
+  mode: process.env.NODE_ENV || 'development',
+  output: {
+    filename: 'application.js',
+    path: path.resolve(__dirname, 'public/javascripts')
+  },
+  watchOptions: {
+    ignored: /node_modules/
+  }
+};
+EOF
+
+# package.json scripts addition
+read -d '' scripts << EOF
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "postcss assets/stylesheets/application.css -o public/stylesheets/application.css && webpack",
+    "watch-postcss": "postcss assets/stylesheets/application.css -o public/stylesheets/application.css --watch",
+    "watch-webpack": "webpack --watch"
+  },
+EOF
+scripts=$(printf '%s\n' "$scripts" | sed 's,[\/&],\\&,g;s/$/\\/')
+scripts=${scripts%?}
+
+mkdir $1
+cd $1
+yarn init -yp
+yarn add @fullhuman/postcss-purgecss autoprefixer cssnano postcss-cli postcss-import stimulus tailwindcss webpack webpack-cli webpack-dev-server
+mkdir -p assets/stylesheets assets/javascripts/controllers functions public/stylesheets public/javascripts public/images
+echo "$application_js" > assets/javascripts/application.js
+echo "$application_controller" > assets/javascripts/controllers/application_controller.js
+echo "$application_css" > assets/stylesheets/application.css
+echo "$tailwind_pcss" > assets/stylesheets/tailwind.pcss
+echo "$index_html" > public/index.html
+echo "$gitignore" > .gitignore
+echo "$netlify_toml" > netlify.toml
+echo "$postcss_config" > postcss.config.js
+echo "$webpack_config" > webpack.config.js
+echo "#$1" > README.md
+sed -i '' "s/\"main\":.*,/$scripts/" package.json
+yarn build
+
+echo ""
+echo "$1 created!"
+echo ""
+echo "Here are some commands to get started:"
+echo ""
+echo "  yarn start         - start a web server with live-reloading enabled"
+echo "  yarn build         - builds JS and CSS packages"
+echo "  yarn watch-postcss - keep watching for new CSS and rebuild automatically"
+echo "  yarn watch-webpack - keep watching for new JS and rebuild automatically"
+echo "  netlify dev        - compile and run functions and serve entire site"
+echo ""
+echo "You can run 'yarn start' right now and head to http://localhost:8080"
+echo ""
+
+exit 0
