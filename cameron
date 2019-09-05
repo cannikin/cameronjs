@@ -207,7 +207,7 @@ EOF
 read -d '' scripts << EOF
   "scripts": {
     "start": "yarn serve & yarn watch",
-    "serve": "live-server --watch=public --open=public",
+    "serve": "live-server --watch=./public --mount=/:./public",
     "build": "webpack && postcss assets/stylesheets/application.css -o public/stylesheets/application.css",
     "watch": "webpack --watch & postcss assets/stylesheets/application.css -o public/stylesheets/application.css --watch"
   },
