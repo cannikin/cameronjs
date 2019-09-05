@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# assets/javascript/application.js
+# code/javascript/application.js
 read -d '' application_js << EOF
 import { Application } from "stimulus"
 import { definitionsFromContext } from "stimulus/webpack-helpers"
@@ -10,9 +10,9 @@ const context = require.context("./controllers", true, /\.js$/)
 application.load(definitionsFromContext(context))
 EOF
 
-# assets/javascript/controllers/application_controller.js
+# code/javascript/controllers/application_controller.js
 read -d '' application_controller << EOF
-# See https://stimulusjs.org for more about StimulusJS
+// See https://stimulusjs.org for more about StimulusJS
 
 import { Controller } from "stimulus"
 
@@ -23,12 +23,12 @@ export default class extends Controller {
 }
 EOF
 
-# assets/stylesheets/application.css
+# code/stylesheets/application.css
 read -d '' application_css << EOF
 @import \"tailwind.pcss\";
 EOF
 
-# assets/stylesheets/tailwind.pcss
+# code/stylesheets/tailwind.pcss
 read -d '' tailwind_pcss << EOF
 /* See https://tailwindcss.com for more about Tailwind CSS */
 
@@ -179,7 +179,7 @@ const RemovePlugin = require("remove-files-webpack-plugin");
 
 module.exports = {
   devtool: "source-map",
-  entry: "./assets/javascripts/application.js",
+  entry: "./code/javascripts/application.js",
   mode: process.env.NODE_ENV || "development",
   output: {
     filename: "application.js",
@@ -187,7 +187,7 @@ module.exports = {
   },
   plugins: [
     new FileIncludeWebpackPlugin({
-      source: "./html",
+      source: "./code/html",
       destination: ".."
     }),
     new RemovePlugin({
@@ -208,8 +208,8 @@ read -d '' scripts << EOF
   "scripts": {
     "start": "yarn serve & yarn watch",
     "serve": "live-server --watch=./public --mount=/:./public",
-    "build": "webpack && postcss assets/stylesheets/application.css -o public/stylesheets/application.css",
-    "watch": "webpack --watch & postcss assets/stylesheets/application.css -o public/stylesheets/application.css --watch"
+    "build": "webpack && postcss code/stylesheets/application.css -o public/stylesheets/application.css",
+    "watch": "webpack --watch & postcss code/stylesheets/application.css -o public/stylesheets/application.css --watch"
   },
 EOF
 scripts=$(printf '%s\n' "$scripts" | sed 's,[\/&],\\&,g;s/$/\\/')
@@ -219,13 +219,13 @@ mkdir $1
 cd $1
 yarn init -yp
 yarn add @fullhuman/postcss-purgecss autoprefixer cssnano file-include-webpack-plugin live-server postcss-cli postcss-import remove-files-webpack-plugin stimulus tailwindcss webpack webpack-cli
-mkdir -p assets/stylesheets assets/javascripts/controllers html/partials functions public/stylesheets public/javascripts public/images
-echo "$application_js" > assets/javascripts/application.js
-echo "$application_controller" > assets/javascripts/controllers/application_controller.js
-echo "$application_css" > assets/stylesheets/application.css
-echo "$tailwind_pcss" > assets/stylesheets/tailwind.pcss
-echo "$index_html" > html/index.html
-echo "$head_html" > html/partials/head.html
+mkdir -p code/html/partials code/javascripts/controllers code/stylesheets functions public/stylesheets public/javascripts public/images
+echo "$application_js" > code/javascripts/application.js
+echo "$application_controller" > code/javascripts/controllers/application_controller.js
+echo "$application_css" > code/stylesheets/application.css
+echo "$tailwind_pcss" > code/stylesheets/tailwind.pcss
+echo "$index_html" > code/html/index.html
+echo "$head_html" > code/html/partials/head.html
 echo "$gitignore" > .gitignore
 echo "$netlify_toml" > netlify.toml
 echo "$postcss_config" > postcss.config.js
