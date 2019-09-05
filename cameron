@@ -1,0 +1,244 @@
+#! /bin/bash
+
+# assets/javascript/application.js
+read -d '' application_js << EOF
+import { Application } from "stimulus"
+import { definitionsFromContext } from "stimulus/webpack-helpers"
+
+const application = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
+application.load(definitionsFromContext(context))
+EOF
+
+# assets/javascript/controllers/application_controller.js
+read -d '' application_controller << EOF
+# See https://stimulusjs.org for more about StimulusJS
+
+import { Controller } from "stimulus"
+
+export default class extends Controller {
+  connect() {
+    console.info('Stimulus Connected.')
+  }
+}
+EOF
+
+# assets/stylesheets/application.css
+read -d '' application_css << EOF
+@import \"tailwind.pcss\";
+EOF
+
+# assets/stylesheets/tailwind.pcss
+read -d '' tailwind_pcss << EOF
+/* See https://tailwindcss.com for more about Tailwind CSS */
+
+@tailwind base;
+@tailwind components;
+/* custom stuff here */
+@tailwind utilities;
+EOF
+
+# public/index.html
+read -d '' index_html << EOF
+<!DOCTYPE html>
+<html lang="en">
+  @@include("partials/head.html", { "title": "$1" })
+<body class="bg-gray-100 text-gray-700 font-sans antialiased" data-controller="application">
+  <main class="max-w-4xl mx-auto bg-white shadow p-8">
+    <header class="text-center py-8">
+      <h1 class="text-5xl font-light leading-none">Welcome to Cameron</h1>
+      <h2 class="text-2xl font-light text-pink-600">A Simple Framework for Simple Apps</h1>
+    </header>
+
+    <p class="">
+      <a class="text-pink-600 font-semibold" href="https://github.com/cannikin/cameron">Cameron</a>
+      is a lightweight framework for building simple HTML/JS/CSS apps (that maybe even have an
+      API). If you want to get something online that has some simple interactivity, forms and
+      even an API, but don't want to go full-blown React then you've come to the right place.
+    </p>
+
+    <p class="mt-4">
+      You write HTML, CSS and Javascript and Cameron will generate plain ol' HTML files for
+      serving however you like. If you want to deploy your site to
+      <a class="text-pink-600 font-semibold" href="https://netlify.com">Netlify</a> then
+      you can also submit forms, add signup/login and even provide an API all without worrying
+      about any server setup or infrastructure.
+    </p>
+
+    <p class="mt-4">
+      Although you can structure your code any way you want, Cameron provides some sensible
+      defaults:
+    </p>
+
+    <ul class="mt-4 ml-4 list-disc list-inside">
+      <li>
+        We like <a class="text-pink-600 font-semibold" href="https://stimulusjs.org">StimulusJS</a>
+        for adding Javascript interactivity to our pages without the
+        overhead and baggage of something like jQuery. As the Stimulus Handbook says, it is
+        "designed to augment your HTML with just enough behavior to make it shine."
+      </li>
+      <li class="mt-2">
+        We like <a class="text-pink-600 font-semibold" href="https://tailwindcss.com">Tailwind CSS</a>
+        because, as they say, it "provides low-level utility classes that
+        let you build completely custom designs without ever leaving your HTML."
+      </li>
+      <li class="mt-2">
+        We like <a class="text-pink-600 font-semibold" href="https://netlify.com">Netlify</a>
+        because you can deploy your code in seconds and lets you work with
+        serverless functions without managing them yourself.
+      </li>
+    </ul>
+
+    <h2 class="text-xl mt-4">Stuff to learn about:</h2>
+    <ul class="mt-2 list-disc list-inside">
+      <li>StimulusJS</li>
+      <li>Tailwind CSS</li>
+      <li>Netlify</li>
+    </ul>
+
+    <h2 class="text-xl mt-4">Commands</h2>
+    <ul class="mt-2 list-disc list-inside">
+      <li>yarn start</li>
+      <li>yarn serve</li>
+      <li>yarn build</li>
+      <li>yarn watch</li>
+    </ul>
+  </main>
+</body>
+</html>
+EOF
+
+read -d '' head_html << EOF
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>@@title</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="stylesheet" href="/stylesheets/application.css">
+  <script type="text/javascript" src="/javascripts/application.js"></script>
+</head>
+EOF
+
+# .gitignore
+read -d '' gitignore << EOF
+.DS_Store
+node_modules
+public/stylesheets/*
+public/javascripts/*
+EOF
+
+# netlify.toml
+read -d '' netlify_toml << EOF
+[build]
+  command = "yarn build"
+  publish = "public"
+  functions = "functions"
+EOF
+
+# postcss.config.js
+read -d '' postcss_config << EOF
+module.exports = {
+  plugins: [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+    process.env.NODE_ENV === 'production' && require('@fullhuman/postcss-purgecss')({
+      content: [
+        './public/*.html'
+      ],
+      defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+      whitelist: ['tab-active']
+    }),
+    process.env.NODE_ENV === 'production' && require('cssnano')({
+      preset: [
+        'default',
+        { "discardComments": { "removeAll": true } }
+      ]
+    })
+  ]
+}
+EOF
+
+# tailwind.config.js
+read -d '' tailwind_config << EOF
+/* See https://tailwindcss.com/docs/configuration for more options */
+
+module.exports = {
+  theme: {},
+  variants: {},
+  plugins: []
+};
+EOF
+
+# webpack.config.js
+read -d '' webpack_config << EOF
+const path = require("path");
+const FileIncludeWebpackPlugin = require("file-include-webpack-plugin");
+const RemovePlugin = require("remove-files-webpack-plugin");
+
+module.exports = {
+  devtool: "source-map",
+  entry: "./assets/javascripts/application.js",
+  mode: process.env.NODE_ENV || "development",
+  output: {
+    filename: "application.js",
+    path: path.resolve(__dirname, "public/javascripts")
+  },
+  plugins: [
+    new FileIncludeWebpackPlugin({
+      source: "./html",
+      destination: ".."
+    }),
+    new RemovePlugin({
+      after: {
+        include: ["public/partials"]
+      }
+    })
+  ],
+  watchOptions: {
+    ignored: /node_modules/
+  }
+};
+
+EOF
+
+# package.json scripts addition
+read -d '' scripts << EOF
+  "scripts": {
+    "start": "yarn serve & yarn watch",
+    "serve": "live-server --watch=public --open=public",
+    "build": "webpack && postcss assets/stylesheets/application.css -o public/stylesheets/application.css",
+    "watch": "webpack --watch & postcss assets/stylesheets/application.css -o public/stylesheets/application.css --watch"
+  },
+EOF
+scripts=$(printf '%s\n' "$scripts" | sed 's,[\/&],\\&,g;s/$/\\/')
+scripts=${scripts%?}
+
+mkdir $1
+cd $1
+yarn init -yp
+yarn add @fullhuman/postcss-purgecss autoprefixer cssnano file-include-webpack-plugin live-server postcss-cli postcss-import remove-files-webpack-plugin stimulus tailwindcss webpack webpack-cli
+mkdir -p assets/stylesheets assets/javascripts/controllers html/partials functions public/stylesheets public/javascripts public/images
+echo "$application_js" > assets/javascripts/application.js
+echo "$application_controller" > assets/javascripts/controllers/application_controller.js
+echo "$application_css" > assets/stylesheets/application.css
+echo "$tailwind_pcss" > assets/stylesheets/tailwind.pcss
+echo "$index_html" > html/index.html
+echo "$head_html" > html/partials/head.html
+echo "$gitignore" > .gitignore
+echo "$netlify_toml" > netlify.toml
+echo "$postcss_config" > postcss.config.js
+echo "$tailwind_config" > tailwind.config.js
+echo "$webpack_config" > webpack.config.js
+echo "#$1" > README.md
+sed -i '' "s/\"main\":.*,/$scripts/" package.json
+yarn build
+
+echo ""
+echo "Your '$1' app was created!"
+echo ""
+echo "Try running 'cd $1 && yarn start' right now and off we go!"
+echo ""
+
+exit 0
