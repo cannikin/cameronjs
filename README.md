@@ -1,5 +1,4 @@
-# Welcome to Cameron
-## A Simple Framework for Simple Apps
+## Cameron: A Simple Framework for Simple Apps
 
 Cameron is a lightweight framework for building simple HTML/JS/CSS apps (that maybe even have an
 API). If you want to get something online that has some simple interactivity, forms and even an API,
