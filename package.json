@@ -1,6 +1,6 @@
 {
   "name": "@cannikin/cameron",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "dependencies": {
     "replace-in-file": "^4.1.3",
     "yargs": "^14.0.0"
