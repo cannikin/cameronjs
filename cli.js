@@ -3,7 +3,7 @@
 const replace = require("replace-in-file");
 const path = require("path");
 const { version } = require("./package.json");
-const { spawn, spawnSync } = require("child_process");
+const { spawnSync } = require("child_process");
 const npmPackages = [
   "@fullhuman/postcss-purgecss",
   "autoprefixer",
@@ -45,7 +45,7 @@ class Cameron {
   copyTemplates() {
     console.log("\nCreating directory structure...\n");
 
-    const spawn = spawnSync("cp", ["-Rv", "templates", `${this.appName}`], {
+    spawnSync("cp", ["-Rv", "templates", `${this.appName}`], {
       cwd: process.cwd(),
       env: process.env,
       stdio: "inherit",
@@ -58,7 +58,7 @@ class Cameron {
   initApp() {
     console.log("\nInitializing package.json...\n");
 
-    const initSpawn = spawnSync("yarn", ["-yp", "--cwd", this.appName, "init"], {
+    spawnSync("yarn", ["-yp", "--cwd", this.appName, "init"], {
       cwd: process.cwd(),
       env: process.env,
       stdio: "inherit",
@@ -69,7 +69,7 @@ class Cameron {
   addPackages() {
     console.log("\nAdding libraries...\n");
 
-    const addSpawn = spawnSync("yarn", ["--cwd", this.appName, "add", ...npmPackages], {
+    spawnSync("yarn", ["--cwd", this.appName, "add", ...npmPackages], {
       cwd: process.cwd(),
       env: process.env,
       stdio: "inherit",
@@ -110,7 +110,7 @@ class Cameron {
   build() {
     console.log("\nRunning first build...\n");
 
-    const addSpawn = spawnSync("yarn", ["--cwd", this.appName, "build"], {
+    spawnSync("yarn", ["--cwd", this.appName, "build"], {
       cwd: process.cwd(),
       env: process.env,
       stdio: "inherit",
