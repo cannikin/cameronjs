@@ -1,5 +1,11 @@
 {
   "name": "@cannikin/cameron",
   "version": "0.0.1",
-  "files": ["README.md"]
+  "dependencies": {
+    "node-fs-extra": "^0.8.2",
+    "yargs": "^14.0.0"
+  },
+  "bin": {
+    "cameron": "./cli.js"
+  }
 }
