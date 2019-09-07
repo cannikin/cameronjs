@@ -1,20 +1,85 @@
-## Cameron: A Simple Framework for Simple Apps
+## Cameron: A Simple Framework for Awesome Apps
 
-Cameron is a lightweight framework for building simple HTML/JS/CSS apps (that maybe even have an
-API). If you want to get something online that has some simple interactivity, forms and even an API,
-but don't want to go full-blown React then you've come to the right place.
+Cameron is a lightweight framework for building simple (or not so simple) HTML and Javascript websites or apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use React, Vue, Ember or Angular then you've come to the right place: Cameron keeps it simple.
 
-You write HTML, CSS and Javascript and Cameron will generate plain ol' HTML files for serving
-however you like. If you want to deploy your site to Netlify then you can also submit forms, add
-signup/login and even provide an API all without worrying about any server setup or infrastructure.
+If you're just starting out as a web developer then Cameron is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. Cameron uses those technologies behind the scenes but you ignore them when you're staring out.
 
-Although you can structure your code any way you want, Cameron provides some sensible defaults:
+You write HTML, CSS and Javascript and deploy them however you like. For the simpliest deployment you've ever seen we like Netlify. With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
 
-* We like StimulusJS for
-adding Javascript interactivity to our pages without the overhead and baggage of something like
-jQuery. As the Stimulus Handbook says, it is "designed to augment your HTML with just enough
-behavior to make it shine."
-* We like Tailwind CSS because, as they say, it "provides low-level utility classes that let you
-build completely custom designs without ever leaving your HTML."
-* We like Netlify because you can deploy your code in seconds and lets you work with serverless
-functions without managing them yourself.
+## Installation
+
+Cameron requires that you have `node` and `npm` or `yarn` installed. [Here's a guide]() for doing that. Once you've got those you'll want to install Cameron globally so you create new apps from anywhere. If you're using `npm` you can install with:
+
+    npm install -g @cannikin/cameron
+
+or with `yarn`:
+
+    yarn install -g @cannikin/cameron
+
+## Creating an app
+
+Cameron gives you a command line tool called `cameron` to actually create your app. It will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
+
+    cameron create my_first_app
+
+After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `start` command to start a web server and automatically open your browser:
+
+    cd my_first_app
+    cameron develop
+
+Your web browser should automatically open to http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actaully deploying your site to the internet.
+
+## Production
+
+When you're readying for production you can create an optimized build with:
+
+    cameron build
+
+And try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/public` directory):
+
+    cameron serve
+
+## TODO Development with Netlify
+
+Instructions for using `netlify dev` to test functions
+
+## Technologies
+
+Cameron uses a combination of several other technologies to make your life easier. You *could* structure your code any way you want, but Cameron provides some sensible defaults and includes libraries that we think will improve your workflow.
+
+### StimulusJS
+
+As their [Handbook](https://stimulusjs.org) says, Stimulus is "designed to augment your HTML with just enough behavior to make it shine." Stimulus isn't worried about managing state or running your codebase as a single page app, it simply hooks into your HTML where you want and will invokes some functions when users take actions.
+
+Stimulus is great for validating form fields, submitting them via AJAX and showing/hiding sections of the page as the user interacts with it—all common functionality in modern web apps. It can do a lot more, however.
+
+### Tailwind CSS
+
+[Tailwind](https://tailwindcss.com) is a "utility-first" collection of CSS rules that enable you to build beautiful, custom interfaces without having to write any CSS yourself. You can, but you may very well find find that Tailwind gives you everything you need to build the app of your dreams.
+
+### Netlify
+
+You don't need to deploy to [Netlify](https://netlify.com), but if you choose to then Cameron is ready to go. We provide your app with a config file and `/functions` directory ready for you to create your server-side code. You can submit forms to Netlify directly and even provide user registration and login functionality, two features that would traditionally require creating and maintaining your own database. Oh, and for most moderate size websites, Netlify is completely free!
+
+### Live Server
+
+It the old days (a few years ago) you'd make a change to your code and then switch to your browser and manually reload it. Over and over again, hundreds of times a day. Cameron includes node's `live-server` package so that as soon as you save your file your browser automatically reloads and shows you the changes.
+
+### PurgeCSS and CSSNano
+
+When you're ready for production a good goal is to make your files as small as possible—the pages load faster from the server and, if you're doing your own hosting, you pay less for the bandwidth to get those pages to the user. [PurgeCSS]() and [CSSNano]() make sure your CSS files are as small as possible by first removing any CSS styles that aren't actually used in your HTML. Then your CSS is minified, which means just removing any comments, newlines and unneccessary whitespace (necessary for humans to read but not for a computer to parse). In a simple web app we've seen the final CSS file size go from ~450KB to 3KB!
+
+### Webpack
+
+[Webpack]() lets you write modern ES6 style Javascript but makes sure it's something that most modern browsers can run, even if you use some fancy syntax that those browser don't know about yet. It will also minify your Javascript (remove all those extra characters that the browser doesn't need).
+
+Webpack is also extremely extensible so that when the time comes to add more advanced functionality, your Cameron app is ready to go.
+
+## Troubleshooting
+
+#### Some of my styles that work fine in development aren't showing in production.
+
+Remember how PurgeCSS removes unused CSS styles? It can only find those CSS styles that are already in your HTML pages. If you add a CSS class via Stimulus, for example, Purge won't know about it and assume you didn't use it. In this case you'll need to let PurgeCSS know the names of those classes manually. In the `postcss.config.js` file, add your classes to the `whitelist` section:
+
+    postcss_config_example_code
+
