@@ -26,4 +26,28 @@ require("yargs") // eslint-disable-line
     argv => {
       new Cameron(argv.name).destroy();
     }
+  )
+  .command(
+    "develop",
+    "Start a web server and watch codebase for changes",
+    () => {},
+    argv => {
+      Cameron.develop();
+    }
+  )
+  .command(
+    "build",
+    "Builds production-ready assets into /public",
+    () => {},
+    argv => {
+      Cameron.build();
+    }
+  )
+  .command(
+    "serve",
+    "Starts a web server to serve the /public directory",
+    () => {},
+    argv => {
+      Cameron.serve();
+    }
   ).argv;
