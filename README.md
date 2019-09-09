@@ -1,10 +1,10 @@
 ## Cameron: A Simple Framework for Awesome Apps
 
-Cameron is a lightweight framework for building simple (or not so simple) HTML and Javascript websites or apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use React, Vue, Ember or Angular then you've come to the right place: Cameron keeps it simple.
+Cameron is a lightweight framework for building simple (or not so simple) HTML and Javascript websites and apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use [React](https://reactjs.org/), [Vue](https://vuejs.org/), [Ember](https://emberjs.com/) or [Angular](https://angular.io/) then you've come to the right place: Cameron keeps it simple.
 
-If you're just starting out as a web developer then Cameron is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. Cameron uses those technologies behind the scenes but you ignore them when you're staring out.
+If you're just starting out as a web developer then Cameron is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. Cameron uses some of those technologies behind the scenes but you can safely ignore them when staring out.
 
-You write HTML, CSS and Javascript and deploy them however you like. For the simpliest deployment you've ever seen we like Netlify. With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
+You write HTML, CSS and Javascript and deploy (see the [glossary](#glossary)) them however you like. For the simpliest deployment you've ever seen we like Netlify. With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
 
 ## Installation
 
@@ -18,20 +18,20 @@ or with `yarn`:
 
 ## Creating an app
 
-Cameron gives you a command line tool called `cameron` to actually create your app. It will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
+Cameron gives you a command line tool called `cameron` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
 
     cameron create my_first_app
 
-After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `start` command to start a web server and automatically open your browser:
+After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `develop` command to start a web server and automatically open your browser:
 
     cd my_first_app
     cameron develop
 
-Your web browser should automatically open to http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actaully deploying your site to the internet.
+Your web browser should automatically open http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actaully deploying your site to the internet.
 
 ## Production
 
-When you're readying for production you can create an optimized build with:
+When you're ready for production you can create an optimized build with:
 
     cameron build
 
@@ -41,11 +41,11 @@ And try serving that optimized build locally to make sure everything is working 
 
 ## TODO Development with Netlify
 
-Instructions for using `netlify dev` to test functions
+Instructions for using `cameron netlify` to test functions. Mention using Postman to test POST requests.
 
 ## Technologies
 
-Cameron uses a combination of several other technologies to make your life easier. You *could* structure your code any way you want, but Cameron provides some sensible defaults and includes libraries that we think will improve your workflow.
+Cameron uses a combination of several other technologies to make your life easier. You *can* structure your code any way you want, but Cameron provides some sensible defaults and includes libraries that we think will improve your workflow.
 
 ### StimulusJS
 
@@ -75,11 +75,61 @@ When you're ready for production a good goal is to make your files as small as p
 
 Webpack is also extremely extensible so that when the time comes to add more advanced functionality, your Cameron app is ready to go.
 
+## Glossary
+
+Build
+: Build definition
+
+Deploy
+: Make your site or app available to the internet for the world to see. This used to be a pretty involved process with running your own servers, keeping them secure and up-to-date with the latest software. With a provider like Netlify you don't need to worry about any of that any more—one command `git push` and your site is live.
+
+Git
+: Code repository
+
+Static Site
+: All the content of the site is already created and just waiting to be delivered to a browser. Any kind of interaction that takes place is via Javascript in the browser. There may be some API calls to save/retrieve data to be displayed. Contrast this with a modern webapp where the content you see may have been assembled from many parts by the server before being sent to the browser.
+
+Website vs Webapp
+: The lines between the two are being blurred but traditionally you would consider a web*site* something more static like a marketing page meant to advertise something, whereas a web*app* contains provides interaction with the user to work with some data (like an email inbox)
+
 ## Troubleshooting
 
 #### Some of my styles that work fine in development aren't showing in production.
 
-Remember how PurgeCSS removes unused CSS styles? It can only find those CSS styles that are already in your HTML pages. If you add a CSS class via Stimulus, for example, Purge won't know about it and assume you didn't use it. In this case you'll need to let PurgeCSS know the names of those classes manually. In the `postcss.config.js` file, add your classes to the `whitelist` section:
+Remember how PurgeCSS removes unused CSS styles? It can only find those CSS styles that are already in your HTML pages. If you add a CSS class via Stimulus, for example, Purge won't know about it and assume you didn't use it. In this case you'll need to let PurgeCSS know the names of those classes manually. In the `postcss.config.js` file, add your classes to the `whitelist` key in the `purgecss` config section:
 
-    postcss_config_example_code
+```javascript
+module.exports = {
+    // ...
+    process.env.NODE_ENV === "production" &&
+      require("@fullhuman/postcss-purgecss")({
+        content: ["./public/**/*.html"],
+        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
+        whitelist: ["custom-class1", "custom-class2", "etc"]
+      }),
+    // ...
+}
+```
 
+## TODO
+
+### CLI
+
+* [ ] Update `build` to force production compilation (or add new task to do so)
+
+### README
+
+* [ ] Explanation of all build scripts
+
+### Wiki
+
+* [ ] Forms with Netlify
+* [ ] Functions with Netlify
+* [ ] Identity with Netlify
+
+### Cameron Welcome Page
+
+* [ ] Simple instructions for finding/editing the current page (maybe adding an image)
+* [ ] Instructions for deploying to Netlify
+* [ ] Maybe include a snippet for creating a form?
+* [ ] Maybe include a snippet for creating a function? (Return something dynamic user can pick from in form)
