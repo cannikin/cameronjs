@@ -116,6 +116,7 @@ module.exports = {
 ### CLI
 
 * [ ] Update `build` to force production compilation (or add new task to do so)
+* [ ] Use yarn-or-npm for script running
 
 ### README
 
@@ -133,3 +134,8 @@ module.exports = {
 * [ ] Instructions for deploying to Netlify
 * [ ] Maybe include a snippet for creating a form?
 * [ ] Maybe include a snippet for creating a function? (Return something dynamic user can pick from in form)
+
+### cameronframework.com
+
+* [ ] Get domain
+* [ ] Intro video that runs through entire framework
