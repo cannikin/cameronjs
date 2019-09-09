@@ -113,20 +113,20 @@ module.exports = {
 
 ## TODO
 
+### Framework
+
+* [ ] Add public/404.html and live-server config to serve it when page not found
+
 ### CLI
 
 * [ ] Update `build` to force production compilation (or add new task to do so)
 * [ ] Use yarn-or-npm for script running
+* [ ] Install `netlify dev` via `-g`
+* [ ] `cameron netlify` in place of `netlify dev`
 
 ### README
 
 * [ ] Explanation of all build scripts
-
-### Wiki
-
-* [ ] Forms with Netlify
-* [ ] Functions with Netlify
-* [ ] Identity with Netlify
 
 ### Cameron Welcome Page
 
@@ -139,3 +139,6 @@ module.exports = {
 
 * [ ] Get domain
 * [ ] Intro video that runs through entire framework
+* [ ] Forms with Netlify
+* [ ] Functions with Netlify
+* [ ] Identity with Netlify
