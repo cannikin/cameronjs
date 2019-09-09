@@ -50,4 +50,12 @@ require("yargs") // eslint-disable-line
     argv => {
       Cameron.serve();
     }
+  )
+  .command(
+    "netlify",
+    "Starts a netlify dev instance for local testing of functions",
+    () => {},
+    argv => {
+      Cameron.netlify();
+    }
   ).argv;
