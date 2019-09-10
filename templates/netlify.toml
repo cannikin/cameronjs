@@ -8,14 +8,26 @@
   publish = "public"
   functions = "functions"
 
+# For more settings see https://www.netlify.com/docs/netlify-toml-reference/#post-processing
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  minify = true
+[build.processing.js]
+  minify = true
+[build.processing.html]
+  pretty_urls = true
+[build.processing.images]
+  compress = true
+
 [context.production]
   environment = { NODE_ENV = "production"}
 
 [context.branch-deploy]
   environment = { NODE_ENV = "production" }
 
+# See https://www.netlify.com/docs/netlify-toml-reference/#redirects
 [[redirects]]
-# see https://www.netlify.com/docs/redirects
 
+# See https://www.netlify.com/docs/netlify-toml-reference/#headers
 [[headers]]
-# see https://www.netlify.com/docs/headers-and-basic-auth
