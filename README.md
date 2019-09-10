@@ -127,6 +127,7 @@ module.exports = {
 ### README
 
 * [ ] Explanation of all build scripts
+* [ ] Explanation of "old fashioned" web development—get your own styles, scripts, images
 
 ### Cameron Welcome Page
 
