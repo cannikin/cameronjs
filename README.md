@@ -65,9 +65,9 @@ You don't need to deploy to [Netlify](https://netlify.com), but if you choose to
 
 It the old days (a few years ago) you'd make a change to your code and then switch to your browser and manually reload it. Over and over again, hundreds of times a day. Cameron includes node's `live-server` package so that as soon as you save your file your browser automatically reloads and shows you the changes.
 
-### PurgeCSS and CSSNano
+### PurgeCSS
 
-When you're ready for production a good goal is to make your files as small as possible—the pages load faster from the server and, if you're doing your own hosting, you pay less for the bandwidth to get those pages to the user. [PurgeCSS]() and [CSSNano]() make sure your CSS files are as small as possible by first removing any CSS styles that aren't actually used in your HTML. Then your CSS is minified, which means just removing any comments, newlines and unneccessary whitespace (necessary for humans to read but not for a computer to parse). In a simple web app we've seen the final CSS file size go from ~450KB to 3KB!
+When you're ready for production a good goal is to make your files as small as possible—the pages load faster from the server and, if you're doing your own hosting, you pay less for the bandwidth to get those pages to the user. [PurgeCSS]() makes sure your CSS output is as small as possible by removing any CSS styles that aren't actually used in your HTML. In a simple web app we've seen the final CSS file size go from ~450KB to 3KB!
 
 ### Webpack
 
