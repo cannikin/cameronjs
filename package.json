@@ -6,6 +6,6 @@
     "yargs": "^14.0.0"
   },
   "bin": {
-    "cameron": "./cli.js"
+    "cameronjs": "./cli.js"
   }
 }
