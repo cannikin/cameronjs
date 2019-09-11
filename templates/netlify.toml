@@ -1,5 +1,5 @@
 [dev]
-  command = "cameron develop"
+  command = "cameronjs dev"
   publish = "public"
   port = 8080
 
