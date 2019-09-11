@@ -10,11 +10,11 @@ You write HTML, CSS and Javascript and deploy (see the [glossary](#glossary)) th
 
 Cameron requires that you have `node` and `npm` or `yarn` installed. [Here's a guide]() for doing that. Once you've got those you'll want to install Cameron globally so you create new apps from anywhere. If you're using `npm` you can install with:
 
-    npm install -g @cannikin/cameron
+    npm install -g cameronjs
 
 or with `yarn`:
 
-    yarn install -g @cannikin/cameron
+    yarn install -g cameronjs
 
 ## Creating an app
 
@@ -115,7 +115,6 @@ module.exports = {
 
 ### Framework
 
-* [ ] Add public/404.html and live-server config to serve it when page not found
 
 ### CLI
 
