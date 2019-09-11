@@ -1,38 +1,38 @@
 #!/usr/bin/env node
 
-const Cameron = require("./lib/cameron");
+const CameronJS = require("./lib/cameron_js");
 
 require("yargs") // eslint-disable-line
   .command(
     "create [name]",
-    "Creates a new Cameron app",
+    "Creates a new CameronJS app",
     yargs => {
       yargs.positional("name", {
         describe: "Name of your app (should not contain spaces)"
       });
     },
     argv => {
-      new Cameron(argv.name).create();
+      new CameronJS(argv.name).create();
     }
   )
   .command(
     "destroy [name]",
-    "Removes a Cameron app",
+    "Removes a CameronJS app",
     yargs => {
       yargs.positional("name", {
         describe: "Name of your existing app"
       });
     },
     argv => {
-      new Cameron(argv.name).destroy();
+      new CameronJS(argv.name).destroy();
     }
   )
   .command(
-    "develop",
+    "dev",
     "Start a web server and watch codebase for changes",
     () => {},
     argv => {
-      Cameron.develop();
+      CameronJS.dev();
     }
   )
   .command(
@@ -40,7 +40,7 @@ require("yargs") // eslint-disable-line
     "Builds production-ready assets into /public",
     () => {},
     argv => {
-      Cameron.build();
+      CameronJS.build();
     }
   )
   .command(
@@ -48,7 +48,7 @@ require("yargs") // eslint-disable-line
     "Starts a web server to serve the /public directory",
     () => {},
     argv => {
-      Cameron.serve();
+      CameronJS.serve();
     }
   )
   .command(
@@ -56,6 +56,6 @@ require("yargs") // eslint-disable-line
     "Starts a netlify dev instance for local testing of functions",
     () => {},
     argv => {
-      Cameron.netlify();
+      CameronJS.netlify();
     }
   ).argv;
