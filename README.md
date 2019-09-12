@@ -14,34 +14,40 @@ Cameron requires that you have `node` and `npm` or `yarn` installed. [Here's a g
 
 or with `yarn`:
 
-    yarn install -g cameronjs
+    yarn global add cameronjs
 
 ## Creating an app
 
-Cameron gives you a command line tool called `cameron` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
+Cameron gives you a command line tool called `cameronjs` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
 
-    cameron create my_first_app
+    cameronjs create my_first_app
 
 After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `develop` command to start a web server and automatically open your browser:
 
     cd my_first_app
-    cameron develop
+    cameronjs dev
 
-Your web browser should automatically open http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actaully deploying your site to the internet.
+Your web browser should automatically open http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actually deploying your site to the internet in a couple of easy steps!
 
 ## Production
 
 When you're ready for production you can create an optimized build with:
 
-    cameron build
+    cameronjs build
 
 And try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/public` directory):
 
-    cameron serve
+    cameronjs serve
 
-## TODO Development with Netlify
+If you deploy to Netlify using our defaults you won't need to run these commands yourself. Netlify will run the `build` command automatically and then serve the site themselves.
 
-Instructions for using `cameron netlify` to test functions. Mention using Postman to test POST requests.
+## Development with Netlify
+
+When you're ready to add try out some serverless calls you can test them locally with:
+
+    cameronjs netlify
+
+This will actually start two web servers, one at http://localhost:8080 just like `cameronjs dev` and another one at http://localhost:8888 which will respond to Netlify function calls at URLs like http://localhost:8888/.netlify/functions/my-function
 
 ## Technologies
 
@@ -77,20 +83,20 @@ Webpack is also extremely extensible so that when the time comes to add more adv
 
 ## Glossary
 
-Build
-: Build definition
+**Build**
+Build definition
 
-Deploy
-: Make your site or app available to the internet for the world to see. This used to be a pretty involved process with running your own servers, keeping them secure and up-to-date with the latest software. With a provider like Netlify you don't need to worry about any of that any more—one command `git push` and your site is live.
+**Deploy**
+Make your site or app available to the internet for the world to see. This used to be a pretty involved process with running your own servers, keeping them secure and up-to-date with the latest software. With a provider like Netlify you don't need to worry about any of that any more—one command `git push` and your site is live.
 
-Git
-: Code repository
+**Git**
+Code repository
 
-Static Site
-: All the content of the site is already created and just waiting to be delivered to a browser. Any kind of interaction that takes place is via Javascript in the browser. There may be some API calls to save/retrieve data to be displayed. Contrast this with a modern webapp where the content you see may have been assembled from many parts by the server before being sent to the browser.
+**Static Site**
+All the content of the site is already created and just waiting to be delivered to a browser. Any kind of interaction that takes place is via Javascript in the browser. There may be some API calls to save/retrieve data to be displayed. Contrast this with a modern webapp where the content you see may have been assembled from many parts by the server before being sent to the browser.
 
-Website vs Webapp
-: The lines between the two are being blurred but traditionally you would consider a web*site* something more static like a marketing page meant to advertise something, whereas a web*app* contains provides interaction with the user to work with some data (like an email inbox)
+**Website vs Webapp**
+The lines between the two are being blurred but traditionally you would consider a web*site* something more static like a marketing page meant to advertise something, whereas a web*app* contains provides interaction with the user to work with some data (like an email inbox)
 
 ## Troubleshooting
 
