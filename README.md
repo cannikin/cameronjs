@@ -1,14 +1,14 @@
-## Cameron: A Simple Framework for Awesome Apps
+## CameronJS: A Simple Framework for Awesome Apps
 
-Cameron is a lightweight framework for building simple (or not so simple) HTML and Javascript websites and apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use [React](https://reactjs.org/), [Vue](https://vuejs.org/), [Ember](https://emberjs.com/) or [Angular](https://angular.io/) then you've come to the right place: Cameron keeps it simple.
+CameronJS is a lightweight framework for building simple (or not so simple) HTML and Javascript websites and apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use [React](https://reactjs.org/), [Vue](https://vuejs.org/), [Ember](https://emberjs.com/) or [Angular](https://angular.io/) then you've come to the right place: CameronJS keeps it simple.
 
-If you're just starting out as a web developer then Cameron is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. Cameron uses some of those technologies behind the scenes but you can safely ignore them when staring out.
+If you're just starting out as a web developer then CameronJS is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. CameronJS uses some of those technologies behind the scenes but you can safely ignore them when staring out.
 
 You write HTML, CSS and Javascript and deploy (see the [glossary](#glossary)) them however you like. For the simpliest deployment you've ever seen we like Netlify. With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
 
 ## Installation
 
-Cameron requires that you have `node` and `npm` or `yarn` installed. [Here's a guide]() for doing that. Once you've got those you'll want to install Cameron globally so you create new apps from anywhere. If you're using `npm` you can install with:
+CameronJS requires that you have `node` and `npm` or `yarn` installed. [Here's a guide]() for doing that. Once you've got those you'll want to install CameronJS globally so you create new apps from anywhere. If you're using `npm` you can install with:
 
     npm install -g cameronjs
 
@@ -18,7 +18,7 @@ or with `yarn`:
 
 ## Creating an app
 
-Cameron gives you a command line tool called `cameronjs` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a Cameron app:
+CameronJS gives you a command line tool called `cameronjs` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a CameronJS app:
 
     cameronjs create my_first_app
 
@@ -27,7 +27,7 @@ After a minute or so you'll have your app's basic shell. You'll also see some po
     cd my_first_app
     cameronjs dev
 
-Your web browser should automatically open http://localhost:8080 and display the Cameron welcome page! There are some simple next steps on the welcome page including instructions for actually deploying your site to the internet in a couple of easy steps!
+Your web browser should automatically open http://localhost:8080 and display the CameronJS welcome page! There are some simple next steps on the welcome page including instructions for actually deploying your site to the internet in a couple of easy steps!
 
 ## Production
 
@@ -51,7 +51,7 @@ This will actually start two web servers, one at http://localhost:8080 just like
 
 ## Technologies
 
-Cameron uses a combination of several other technologies to make your life easier. You *can* structure your code any way you want, but Cameron provides some sensible defaults and includes libraries that we think will improve your workflow.
+CameronJS uses a combination of several other technologies to make your life easier. You *can* structure your code any way you want, but CameronJS provides some sensible defaults and includes libraries that we think will improve your workflow.
 
 ### StimulusJS
 
@@ -65,11 +65,11 @@ Stimulus is great for validating form fields, submitting them via AJAX and showi
 
 ### Netlify
 
-You don't need to deploy to [Netlify](https://netlify.com), but if you choose to then Cameron is ready to go. We provide your app with a config file and `/functions` directory ready for you to create your server-side code. You can submit forms to Netlify directly and even provide user registration and login functionality, two features that would traditionally require creating and maintaining your own database. Oh, and for most moderate size websites, Netlify is completely free!
+You don't need to deploy to [Netlify](https://netlify.com), but if you choose to then CameronJS is ready to go. We provide your app with a config file and `/functions` directory ready for you to create your server-side code. You can submit forms to Netlify directly and even provide user registration and login functionality, two features that would traditionally require creating and maintaining your own database. Oh, and for most moderate size websites, Netlify is completely free!
 
 ### Live Server
 
-It the old days (a few years ago) you'd make a change to your code and then switch to your browser and manually reload it. Over and over again, hundreds of times a day. Cameron includes node's `live-server` package so that as soon as you save your file your browser automatically reloads and shows you the changes.
+It the old days (a few years ago) you'd make a change to your code and then switch to your browser and manually reload it. Over and over again, hundreds of times a day. CameronJS includes node's `live-server` package so that as soon as you save your file your browser automatically reloads and shows you the changes.
 
 ### PurgeCSS
 
@@ -79,7 +79,7 @@ When you're ready for production a good goal is to make your files as small as p
 
 [Webpack]() lets you write modern ES6 style Javascript but makes sure it's something that most modern browsers can run, even if you use some fancy syntax that those browser don't know about yet. It will also minify your Javascript (remove all those extra characters that the browser doesn't need).
 
-Webpack is also extremely extensible so that when the time comes to add more advanced functionality, your Cameron app is ready to go.
+Webpack is also extremely extensible so that when the time comes to add more advanced functionality, your CameronJS app is ready to go.
 
 ## Glossary
 
@@ -128,7 +128,7 @@ module.exports = {
 * [ ] Update `build` to force production compilation (or add new task to do so)
 * [ ] Use yarn-or-npm for script running
 * [ ] Install `netlify dev` via `-g`
-* [ ] `cameron netlify` in place of `netlify dev`
+* [*] `cameronjs netlify` in place of `netlify dev`
 
 ### README
 
