@@ -121,14 +121,14 @@ module.exports = {
 
 ### Framework
 
-* [*] Add 404 page and setup live-server to serve when page not found
+* [x] Add 404 page and setup live-server to serve when page not found
 
 ### CLI
 
 * [ ] Update `build` to force production compilation (or add new task to do so)
 * [ ] Use yarn-or-npm for script running
 * [ ] Install `netlify dev` via `-g`
-* [*] `cameronjs netlify` in place of `netlify dev`
+* [x] `cameronjs netlify` in place of `netlify dev`
 
 ### README
 
@@ -144,7 +144,7 @@ module.exports = {
 
 ### cameronjs.com
 
-* [*] Get domain
+* [x] Get domain
 * [ ] Intro video that runs through entire framework
 * [ ] Forms with Netlify
 * [ ] Functions with Netlify
