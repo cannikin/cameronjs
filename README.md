@@ -22,7 +22,7 @@ CameronJS gives you a command line tool called `cameronjs` to actually create an
 
     cameronjs create my_first_app
 
-After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `develop` command to start a web server and automatically open your browser:
+After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `dev` command to start a web server and automatically open your browser:
 
     cd my_first_app
     cameronjs dev
