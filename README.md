@@ -121,7 +121,7 @@ module.exports = {
 
 ### Framework
 
-* None
+* [*] Add 404 page and setup live-server to serve when page not found
 
 ### CLI
 
@@ -144,7 +144,7 @@ module.exports = {
 
 ### cameronjs.com
 
-* [ ] Get domain
+* [*] Get domain
 * [ ] Intro video that runs through entire framework
 * [ ] Forms with Netlify
 * [ ] Functions with Netlify
