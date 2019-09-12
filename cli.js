@@ -2,25 +2,28 @@
 
 const CameronJS = require("./lib/cameron_js");
 
-require("yargs") // eslint-disable-line
+console.log("Try `cameronjs --help` for usage options");
+
+require("yargs")
+  .usage("Usage $0 <command> [options]")
   .command(
-    "create [name]",
+    "new [path]",
     "Creates a new CameronJS app",
     yargs => {
-      yargs.positional("name", {
-        describe: "Name of your app (should not contain spaces)"
+      yargs.positional("path", {
+        describe: "Path to your new app (ex. ~/Sites/my_app)"
       });
     },
     argv => {
-      new CameronJS(argv.name).create();
+      new CameronJS(argv.path).create();
     }
   )
   .command(
-    "destroy [name]",
+    "destroy [path]",
     "Removes a CameronJS app",
     yargs => {
-      yargs.positional("name", {
-        describe: "Name of your existing app"
+      yargs.positional("path", {
+        describe: "Path to your existing app (ex. ~/Sites/my_app)"
       });
     },
     argv => {
