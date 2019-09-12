@@ -121,6 +121,7 @@ module.exports = {
 
 ### Framework
 
+* None
 
 ### CLI
 
@@ -134,14 +135,14 @@ module.exports = {
 * [ ] Explanation of all build scripts
 * [ ] Explanation of "old fashioned" web development—get your own styles, scripts, images
 
-### Cameron Welcome Page
+### App Welcome Page
 
 * [ ] Simple instructions for finding/editing the current page (maybe adding an image)
 * [ ] Instructions for deploying to Netlify
 * [ ] Maybe include a snippet for creating a form?
 * [ ] Maybe include a snippet for creating a function? (Return something dynamic user can pick from in form)
 
-### cameronframework.com
+### cameronjs.com
 
 * [ ] Get domain
 * [ ] Intro video that runs through entire framework
