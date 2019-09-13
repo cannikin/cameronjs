@@ -8,7 +8,7 @@
   },
   "homepage": "https://cameronjs.com",
   "license": "MIT",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "dependencies": {
     "replace-in-file": "^4.1.3",
     "yargs": "^14.0.0"
