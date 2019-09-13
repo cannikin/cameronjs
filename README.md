@@ -2,13 +2,23 @@
 
 CameronJS is a lightweight framework for building simple (or not so simple) HTML and Javascript websites and apps. If you want to get something online that has some simple interactivity, forms and even an API, but don't want or need to use [React](https://reactjs.org/), [Vue](https://vuejs.org/), [Ember](https://emberjs.com/) or [Angular](https://angular.io/) then you've come to the right place: CameronJS keeps it simple.
 
-If you're just starting out as a web developer then CameronJS is a great place to learn the ropes. You can focus on the fundamentals of HTML, Javascript and CSS without learning a half dozen other new technologies at the same time. CameronJS uses some of those technologies behind the scenes but you can safely ignore them when staring out.
+You write HTML, CSS and Javascript and then deploy (see the [glossary](#glossary)) them however you like. For the simpliest deployment you've ever seen we like [Netlify](https://netlify.com). With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
 
-You write HTML, CSS and Javascript and deploy (see the [glossary](#glossary)) them however you like. For the simpliest deployment you've ever seen we like Netlify. With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
+If you're just starting out as a web developer then CameronJS is a great place to learn the ropes. You can focus on the fundamentals of HTML, CSS and Javascript without learning a half dozen other new technologies at the same time. CameronJS uses some of those technologies behind the scenes but you can safely ignore them when staring out.
+
+And if you're an experienced dev that needs a smaller framework for creating simple apps quickly CameronJS is for you, too.
+
+Check out the [Philosophy](#philosophy) section below for more.
 
 ## Installation
 
-CameronJS requires that you have `node` and `npm` or `yarn` installed. [Here's a guide]() for doing that. Once you've got those you'll want to install CameronJS globally so you create new apps from anywhere. If you're using `npm` you can install with:
+CameronJS requires that you have `node` and `npm` or `yarn` installed. If you're on a Mac then it's very simple using [Homebrew](https://brew.sh/):
+
+    brew install node yarn
+
+Installing node can be pretty different based on your OS. Do a quick [google search](https://www.google.com/search?q=install+node) to find the current best way for your OS. Yarn has a great documentation for installing on most major OSes: https://yarnpkg.com/lang/en/docs/install
+
+Once you've got `node` and `npm` or `yarn` you'll want to install CameronJS globally so you create new apps from anywhere. If you're using `npm` you can install with:
 
     npm install -g cameronjs
 
@@ -18,16 +28,20 @@ or with `yarn`:
 
 ## Creating an app
 
-CameronJS gives you a command line tool called `cameronjs` to actually create and work with your app. The `create` command will create a directory with the name you give it and populate it with the basic structure of a CameronJS app:
+CameronJS gives you a command line tool called `cameronjs` to actually create and work with your app. The `new` command will create a directory with the name you give it and populate it with the basic structure of a CameronJS app:
 
-    cameronjs create my_first_app
+    cameronjs new ~/Sites/my_first_app
 
 After a minute or so you'll have your app's basic shell. You'll also see some post-install instructions to get your app up and running in your browser. Change directories into your app then run the `dev` command to start a web server and automatically open your browser:
 
-    cd my_first_app
+    cd ~/Sites/my_first_app
     cameronjs dev
 
-Your web browser should automatically open http://localhost:8080 and display the CameronJS welcome page! There are some simple next steps on the welcome page including instructions for actually deploying your site to the internet in a couple of easy steps!
+Your web browser should automatically open http://localhost:8080 and display the CameronJS welcome page! This server features live reloading so as soon as you make a change to your code it will show in your browser without manually refreshing. (Coming from the old days when you would manually reload hundreds of times a day, let me tell you this is *amazing*.)
+
+There are some simple next steps on the welcome page including instructions for actually deploying your site to the internet in a couple of easy steps!
+
+When you're done for the day just hit `ctrl-C` to stop the server.
 
 ## Production
 
@@ -35,7 +49,7 @@ When you're ready for production you can create an optimized build with:
 
     cameronjs build
 
-And try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/public` directory):
+Try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/public` directory):
 
     cameronjs serve
 
@@ -43,11 +57,47 @@ If you deploy to Netlify using our defaults you won't need to run these commands
 
 ## Development with Netlify
 
-When you're ready to add try out some serverless calls you can test them locally with:
+Of course you can deploy anywhere you want but CameronJS is ready to go out of the box to [Netlify](https://netlify.com). Once you've created your Netlify account, and your app's code is in GitHub, GitLab or Bitbucket just create a new site on Netlify and find your repo:
+
+![image](https://user-images.githubusercontent.com/300/64876047-283f6500-d603-11e9-8dcf-a3e4c4d24534.png)
+
+A minute or two later your site will be live! Netlify will automatically run the `build` command to get all your files ready for production.
+
+If and when you're ready to add try out some [serverless calls](https://www.netlify.com/products/functions/) you can test them locally by installing Netlify's CLI tools:
+
+    npm add -g netlify-cli
+
+or
+
+    yarn global add netlify-cli
+
+Now login with your Netlify credentials:
+
+    netlify login
+
+To start the dev environment you would normally start it with `netlify dev` but we've got a custom build/watch process so use the CameronJS wrapper instead:
 
     cameronjs netlify
 
-This will actually start two web servers, one at http://localhost:8080 just like `cameronjs dev` and another one at http://localhost:8888 which will respond to Netlify function calls at URLs like http://localhost:8888/.netlify/functions/my-function
+This will actually start two web servers: one at http://localhost:8080 like usual and another one at http://localhost:8888 which will respond to Netlify function calls at URLs like http://localhost:8888/.netlify/functions/my-function
+
+Learn more about Netlify Functions in their docs: https://www.netlify.com/docs/functions/
+
+## Philosophy
+
+I started a new job recently and part of that was coming up with many single-use, simple websites. Some needed to be just read-only (marketing sites) while others needed simple forms to accept names and emails, while others needed to ingest data from GitHub repos and produce nicely formatted webpages.
+
+I could have used [Ruby on Rails](https://rubyonrails.org) or [React](https://reactjs.org) for these sites but that seemed like overkill—I just needed to save a few email addresses. If you've built any of these kinds of sites yourself you'll feel your stomach drop as soon as you think about submitting a form—you need a server to accept the submit and a database to save the data. My simple little app just got exponentially more complex.
+
+After learning about the [JAM stack](https://jamstack.org/), and specifically [Netlify](https://netlify.com), I discovered that I could submit forms and save data without a server or a database—Netlify will save that data for me. After creating three of these simple types of sites some patterns started to emerge. I pulled those patterns out and came up with a simple framework for creating these types of sites: CameronJS.
+
+CameronJS assumes you want plain ol' HTML pages with just a bit of help: layouts and partials to create reusable parts of a page. CameronJS embraces a [utility-first](https://tailwindcss.com/docs/utility-first) CSS framework, [Tailwind CSS](https://tailwindcss.com/), to save you from having to write all your styles from scratch (in fact you might find yourself building entire sites without writing any new styles). CameronJS knows you'll probably need to add a little interactivity to your sites so it includes [StimulusJS](https://stimulusjs.org) for quickly adding interaction to parts of your pages.
+
+Are you just starting to learn web development? We think CameronJS is a great place to start.
+
+Web frameworks have become very complex. Which is what you need if you're buliding the next Facebook—you need that complexity to build complex things. But it's overkill when you just need a simple form, marketing site or personal blog. It's also extremely tough to get started in web development when you find out you much [you](https://blog.logrocket.com/the-increasing-nature-of-frontend-complexity-b73c784c09ae/[) [need](https://www.quora.com/Why-has-frontend-JavaScript-development-become-so-complex) [to](https://www.sitepoint.com/anatomy-of-a-modern-javascript-application/) [learn](https://en.arguman.org/web-programming-is-getting-unnecessarily-complicated). Here's a [fun parable](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f) of what it was like to learn Javascript in 2016.
+
+CameronJS aims to be both a great framework to learn the basics of web development, but a powerful tool for creating the simple kinds of apps we all find ourselves building now and then.
 
 ## Technologies
 
@@ -127,7 +177,6 @@ module.exports = {
 
 * [ ] Update `build` to force production compilation (or add new task to do so)
 * [ ] Use yarn-or-npm for script running
-* [ ] Install `netlify dev` via `-g`
 * [x] `cameronjs netlify` in place of `netlify dev`
 
 ### README
