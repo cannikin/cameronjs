@@ -4,6 +4,6 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   connect() {
-    console.info("Stimulus Connected.");
+    console.info("CameronJS Connected.");
   }
 }
