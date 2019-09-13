@@ -1,62 +1,141 @@
-@@layout("application")
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>my_app2</title>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="/stylesheets/application.css" />
+  <script type="text/javascript" src="/javascripts/application.js"></script>
+</head>
 <body class="bg-gray-100 text-gray-700 font-sans antialiased" data-controller="application">
-  <main class="max-w-4xl mx-auto bg-white shadow p-8">
-    @@include("header.html")
+  <main class="lg:max-w-4xl mx-auto bg-white shadow p-8">
+    <header class="flex items-center pt-4 pb-8 text-left">
+      <img class="block mr-4 w-16 lg:w-20" src="/images/logo.svg" alt="CameronJS Logo" />
+      <div class="">
+        <h1 class="text-4xl lg:text-5xl font-light leading-none text-gray-700">
+          Cameron<span class="font-thin text-red-700">JS</span>
+        </h1>
+        <h2 class="text-sm leading-tight lg:text-xl font-light text-gray-600">A Simple Framework for Awesome Apps</h2>
+      </div>
+    </header>
 
-    <p class="">
-      <a class="text-pink-600 font-semibold" href="https://github.com/cannikin/cameron">Cameron</a>
-      is a lightweight framework for building simple HTML/JS/CSS apps (that maybe even have an API).
-      If you want to get something online that has some simple interactivity, forms and even an API,
-      but don't want to go full-blown React then you've come to the right place.
+    <h2 class="text-2xl">Getting Started</h2>
+    <p class="mt-4">
+      You'll find this file at
+      <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">
+          code/html/index.html</code>
+      Before you start editing it there are a couple of things you should know:
+      <ul class="my-4 mx-8 list-disc list-outside">
+        <li>
+          Unless you really know what you're doing, we recommend keeping everything between the
+          <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">
+              &lt;head&gt; ... &lt;/head&gt;
+            </code>
+          tags so that your CSS and JS is included, your site resizes itself for mobile and a
+          couple of other helpful things.
+        </li>
+        <li>
+          Don't worry about losing the info on this page, you can always see it at
+          <a class="underline text-red-700 font-semibold" href="https://cameronjs.com/welcome"
+            target="_blank">https://cameronjs.com/welcome</a>.
+        </li>
+        <li>
+          Check out <a class="underline text-red-700 font-semibold" href="https://cameronjs.com/intro"
+            target="_blank">https://cameronjs.com/intro</a> for a tutorial that walks you
+          through the features of CameronJS.
+        </li>
+      </ul>
     </p>
 
     <p class="mt-4">
-      You write HTML, CSS and Javascript and Cameron will generate plain ol' HTML files for serving
-      however you like. If you want to deploy your site to
-      <a class="text-pink-600 font-semibold" href="https://netlify.com">Netlify</a> then you can
-      also submit forms, add signup/login and even provide an API all without worrying about any
-      server setup or infrastructure.
+      If you want to add some images to your site, those go in
+      <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">public/images</code>
+      (you'll find the
+      <img class="inline align-text-bottom" style="width: 0.8rem" src="/images/logo.svg" alt="CameronJS logo" />
+      logo in there now). Go to
+      <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">code/stylesheets</code>
+      for your CSS and
+      <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">code/javascripts</code>
+      for your JS (you'll find some comments in there to get you started with both). Want to change the
+      little icon that goes in the tab in your browser? That's
+      <code class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">public/favicon.png</code>
+    </p>
+
+    <h2 class="text-2xl mt-8">Deploying</h2>
+    <p class="mt-4">
+      Ready to get this site online? First make sure everything is
+      <a class="underline text-red-700 font-semibold" href="https://cameronjs.com/git">committed</a> to your GitHub,
+      GitLab or Bitbucket
+      account. For example, to push your code up to GitHub first create a
+      <a class="underline text-red-700 font-semibold" href="https://github.com/new" target="_blank">new repository</a>
+      and then
+      run the following commands:
+    </p>
+    <pre class="mt-4 px-6 bg-gray-900 text-gray-100 leading-tight rounded overflow-x-scroll"><code class="font-mono text-xs">
+git add .
+git commit -am 'First commit'
+git remote add origin git@github.com:cannikin/first-cameronjs-app.git
+git push -u origin master
+  </code></pre>
+    <p class="mt-4">
+      The
+      <code
+        class="text-sm bg-gray-300 text-gray-700 py-px px-1 rounded">git@github.com:cannikin/first-cameronjs-app.git</code>
+      part should be the URL that GitHub gives you for your own repository.
     </p>
 
     <p class="mt-4">
-      Although you can structure your code any way you want, Cameron provides some sensible
-      defaults:
+      Now create an account over at
+      <a href="https://app.netlify.com/signup" target="_blank" class="text-red-700 font-semibold underline">Netlify</a>
+      After verifying your email click the <strong>New Site from Git</strong> button in the
+      <strong>Sites</strong> section.
+      <a class="underline text-red-700 font-semibold" href="#" data-target="application.toggle"
+        data-action="application#toggle">Show Screenshot</a>
+      <img class="hidden mt-4 lg:px-32" alt="Create New Site on Netlify"
+        src="https://user-images.githubusercontent.com/300/64883800-0b139200-d615-11e9-86bb-1dfcee5afd4b.png" />
     </p>
 
-    <ul class="mt-4 ml-4 list-disc list-inside">
-      <li>
-        We like <a class="text-pink-600 font-semibold" href="https://stimulusjs.org">StimulusJS</a>
-        for adding Javascript interactivity to our pages without the overhead and baggage of
-        something like jQuery. As the Stimulus Handbook says, it is "designed to augment your HTML
-        with just enough behavior to make it shine."
-      </li>
-      <li class="mt-2">
-        We like
-        <a class="text-pink-600 font-semibold" href="https://tailwindcss.com">Tailwind CSS</a>
-        because, as they say, it "provides low-level utility classes that let you build completely
-        custom designs without ever leaving your HTML."
-      </li>
-      <li class="mt-2">
-        We like <a class="text-pink-600 font-semibold" href="https://netlify.com">Netlify</a>
-        because you can deploy your code in seconds and lets you work with serverless functions
-        without managing them yourself.
-      </li>
-    </ul>
+    <p class="mt-4">
+      Pick your host and find your new repo.
+      <a class="underline text-red-700 font-semibold" href="#" data-target="application.toggle"
+        data-action="application#toggle">Show Screenshot</a>
+      <img class="hidden mt-4 lg:px-32" alt="Choose your Repository on Netlify"
+        src="https://user-images.githubusercontent.com/300/64883986-7493a080-d615-11e9-8e86-29dddde054d4.png" />
+    </p>
 
-    <h2 class="text-xl mt-4">Stuff to learn about:</h2>
-    <ul class="mt-2 list-disc list-inside">
-      <li>StimulusJS</li>
-      <li>Tailwind CSS</li>
-      <li>Netlify</li>
-    </ul>
+    <p class="mt-4">
+      In a minute or less your site will be online! Click the URL under your site name to see.
+      <a class="underline text-red-700 font-semibold" href="#" data-target="application.toggle"
+        data-action="application#toggle">Show Screenshot</a>
+      <img class="hidden mt-4 lg:px-32" alt="Screen Shot 2019-09-13 at 11 05 57 AM"
+        src="https://user-images.githubusercontent.com/300/64884406-83c71e00-d616-11e9-9065-bb46e1592ff6.png" />
+    </p>
 
-    <h2 class="text-xl mt-4">Commands</h2>
-    <ul class="mt-2 list-disc list-inside">
-      <li>yarn start</li>
-      <li>yarn serve</li>
-      <li>yarn build</li>
-      <li>yarn watch</li>
-    </ul>
+    <p class="mt-4">
+      Follow the <strong>Getting started</strong> instructions in Netlify to set up a custom
+      domain and SSL. Bet you've never had a site online that fast! And every time you push
+      changes to your code Netlify will automatically re-deploy your site for you.
+    </p>
+
+    <h2 class="mt-8 text-2xl">Going further</h2>
+
+    <p class="mt-4">
+      Head over to
+      <a class="underline font-semibold text-red-700" href="https://cameronjs.com/first-app"
+        target="_blank">https://cameronjs.com/first-app</a>
+      to build an actual app that allows users to signup and be notified via email when it's going
+      to rain. We'll use Netlify's
+      <a href="https://www.netlify.com/docs/form-handling/" class="underline font-semibold text-red-700"
+        target="_blank">Forms</a>
+      and
+      <a href="https://www.netlify.com/docs/functions/" class="underline font-semibold text-red-700"
+        target="_blank">Functions</a>
+      to build a full webapp with no server or database. It's the future!
+    </p>
+
+    <h2 class="mt-8 mb-8 text-center text-4xl text-red-700">Have fun!</h2>
   </main>
 </body>
+</html>
