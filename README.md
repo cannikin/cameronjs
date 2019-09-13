@@ -4,9 +4,9 @@ CameronJS is a lightweight framework for building simple (or not so simple) HTML
 
 You write HTML, CSS and Javascript and then deploy (see the [glossary](#glossary)) them however you like. For the simpliest deployment you've ever seen we like [Netlify](https://netlify.com). With Netlify you can also submit forms, add signup and login, and even provide an API all without worrying about any server setup or infrastructure.
 
-If you're just starting out as a web developer then CameronJS is a great place to learn the ropes. You can focus on the fundamentals of HTML, CSS and Javascript without learning a half dozen other new technologies at the same time. CameronJS uses some of those technologies behind the scenes but you can safely ignore them when staring out.
+If you're just starting out as a web developer then CameronJS is a great place to learn the ropes. You can focus on the fundamentals of HTML, CSS and Javascript without having  to learn a dozen other new technologies at the same time. CameronJS uses some of those technologies behind the scenes but you can safely ignore them when staring out.
 
-And if you're an experienced dev that needs a smaller framework for creating simple apps quickly CameronJS is for you, too.
+And if you're an experienced dev that needs a smaller framework for creating simple apps quickly then CameronJS is definitely for you, too.
 
 Check out the [Philosophy](#philosophy) section below for more.
 
@@ -16,15 +16,15 @@ CameronJS requires that you have `node` and `npm` or `yarn` installed. If you're
 
     brew install node yarn
 
-Installing node can be pretty different based on your OS. Do a quick [google search](https://www.google.com/search?q=install+node) to find the current best way for your OS. Yarn has a great documentation for installing on most major OSes: https://yarnpkg.com/lang/en/docs/install
+Installing node can be pretty different based on your OS. Do a quick [google search](https://www.google.com/search?q=install+node) to find the current best way for your OS. Yarn has great documentation for installing on most major OSes: https://yarnpkg.com/lang/en/docs/install
 
-Once you've got `node` and `npm` or `yarn` you'll want to install CameronJS globally so you create new apps from anywhere. If you're using `npm` you can install with:
-
-    npm install -g cameronjs
-
-or with `yarn`:
+In the examples below we're going to assume you're using `yarn` but just substitute the commands for `npm` if needed. You'll want to install CameronJS globally so you create new apps from anywhere:
 
     yarn global add cameronjs
+
+That's it! To see what it can do:
+
+    cameronjs --help
 
 ## Creating an app
 
@@ -65,17 +65,13 @@ A minute or two later your site will be live! Netlify will automatically run the
 
 If and when you're ready to add try out some [serverless calls](https://www.netlify.com/products/functions/) you can test them locally by installing Netlify's CLI tools:
 
-    npm add -g netlify-cli
-
-or
-
     yarn global add netlify-cli
 
 Now login with your Netlify credentials:
 
     netlify login
 
-To start the dev environment you would normally start it with `netlify dev` but we've got a custom build/watch process so use the CameronJS wrapper instead:
+To start the dev environment you would normally start it with `netlify dev` but we've got a custom build/watch process that `netlify` can't automatically identify yet so use the CameronJS wrapper instead:
 
     cameronjs netlify
 
@@ -89,15 +85,15 @@ I started a new job recently and part of that was coming up with many single-use
 
 I could have used [Ruby on Rails](https://rubyonrails.org) or [React](https://reactjs.org) for these sites but that seemed like overkill—I just needed to save a few email addresses. If you've built any of these kinds of sites yourself you'll feel your stomach drop as soon as you think about submitting a form—you need a server to accept the submit and a database to save the data. My simple little app just got exponentially more complex.
 
-After learning about the [JAM stack](https://jamstack.org/), and specifically [Netlify](https://netlify.com), I discovered that I could submit forms and save data without a server or a database—Netlify will save that data for me. After creating three of these simple types of sites some patterns started to emerge. I pulled those patterns out and came up with a simple framework for creating these types of sites: CameronJS.
+After learning about the [JAM stack](https://jamstack.org/), and specifically [Netlify](https://netlify.com), I discovered that I could submit forms and save data without a server or a database—Netlify Forms will save it for me. And if I needed to talk to a database I could do that as well. I'd need to use a database somewhere in the world but I wouldn't need to worry about a server to talk to it, Netlify Functions do that. After creating three of these simple types of sites some patterns started to emerge. I pulled those patterns out and came up with a simple framework for creating these types of sites: CameronJS.
 
 CameronJS assumes you want plain ol' HTML pages with just a bit of help: layouts and partials to create reusable parts of a page. CameronJS embraces a [utility-first](https://tailwindcss.com/docs/utility-first) CSS framework, [Tailwind CSS](https://tailwindcss.com/), to save you from having to write all your styles from scratch (in fact you might find yourself building entire sites without writing any new styles). CameronJS knows you'll probably need to add a little interactivity to your sites so it includes [StimulusJS](https://stimulusjs.org) for quickly adding interaction to parts of your pages.
 
 Are you just starting to learn web development? We think CameronJS is a great place to start.
 
-Web frameworks have become very complex. Which is what you need if you're buliding the next Facebook—you need that complexity to build complex things. But it's overkill when you just need a simple form, marketing site or personal blog. It's also extremely tough to get started in web development when you find out you much [you](https://blog.logrocket.com/the-increasing-nature-of-frontend-complexity-b73c784c09ae/[) [need](https://www.quora.com/Why-has-frontend-JavaScript-development-become-so-complex) [to](https://www.sitepoint.com/anatomy-of-a-modern-javascript-application/) [learn](https://en.arguman.org/web-programming-is-getting-unnecessarily-complicated). Here's a [fun parable](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f) of what it was like to learn Javascript in 2016.
+Web frameworks have become very complex. Which is what you need if you're buliding the next Facebook—you need that complexity to build complex things. But it's overkill when you just need a simple form, marketing site or personal blog. It's also extremely tough to get started in web development when you find out you much [you](https://blog.logrocket.com/the-increasing-nature-of-frontend-complexity-b73c784c09ae/[) [need](https://www.quora.com/Why-has-frontend-JavaScript-development-become-so-complex) [to](https://www.sitepoint.com/anatomy-of-a-modern-javascript-application/) [learn](https://en.arguman.org/web-programming-is-getting-unnecessarily-complicated). Here's a [fun parable](https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f) of what it was like to learn Javascript in 2016, let alone today.
 
-CameronJS aims to be both a great framework to learn the basics of web development, but a powerful tool for creating the simple kinds of apps we all find ourselves building now and then.
+CameronJS aims to be both a great framework to learn the basics of web development, and a powerful tool for creating the simple kinds of apps we all find ourselves building now and then.
 
 ## Technologies
 
@@ -181,9 +177,6 @@ module.exports = {
 
 ### README
 
-* [ ] Explanation of all build scripts
-* [ ] Explanation of "old fashioned" web development—get your own styles, scripts, images
-
 ### App Welcome Page
 
 * [ ] Simple instructions for finding/editing the current page (maybe adding an image)
@@ -194,7 +187,16 @@ module.exports = {
 ### cameronjs.com
 
 * [x] Get domain
+* [ ] Copy of welcome page
 * [ ] Intro video that runs through entire framework
 * [ ] Forms with Netlify
 * [ ] Functions with Netlify
 * [ ] Identity with Netlify
+* [ ] Explanation of "old fashioned" web development—get your own styles, scripts, images
+* [ ] CSS intro
+* [ ] JS intro
+* [ ] Tailwind intro
+* [ ] Stimulus intro
+* [ ] Git intro
+* [ ] First-app page that creates a signup page for a weather app
+* [ ] Email intro (Sendgrid)
