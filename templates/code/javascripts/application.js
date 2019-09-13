@@ -1,3 +1,5 @@
+// See https://cameronjs.com/js for more info
+
 import { Application } from "stimulus";
 import { definitionsFromContext } from "stimulus/webpack-helpers";
 

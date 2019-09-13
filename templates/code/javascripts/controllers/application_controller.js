@@ -1,4 +1,4 @@
-// See https://stimulusjs.org for more about StimulusJS
+// See https://cameronjs.com/stimulus for more info
 
 import { Controller } from "stimulus";
 
