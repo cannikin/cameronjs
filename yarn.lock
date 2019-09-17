@@ -33,9 +33,9 @@ camelcase@^5.0.0:
   integrity sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==
 
 cameronjs-html-webpack-plugin@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/cameronjs-html-webpack-plugin/-/cameronjs-html-webpack-plugin-0.4.0.tgz#826eca3bf63d7cf274d1be2355d40f3f3a92a795"
-  integrity sha512-NkvTLvmdMyvO85/ZMYw9ykMG6ePTGqzk62mGYYeP9Jsu4l/iUXzDNFr46V+iSw0d0++QzBfPDMnKWtm3GS66mQ==
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/cameronjs-html-webpack-plugin/-/cameronjs-html-webpack-plugin-0.4.1.tgz#a44636929fdba0fe3a830d6278fba28a5b2c5bcf"
+  integrity sha512-fwWMeCHQOdx4f8P18fMwyY7DLA0x8Udv+XZIs1R2k8pxcxwnkzAmpk5/CDn8MWZFT88Ac/IAdesgI9pLpLaeyQ==
 
 chalk@^2.4.2:
   version "2.4.2"
