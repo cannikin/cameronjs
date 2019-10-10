@@ -40,7 +40,7 @@ require("yargs")
   )
   .command(
     "build",
-    "Builds production-ready assets into /public",
+    "Builds production-ready assets into /publish",
     () => {},
     argv => {
       CameronJS.build();
@@ -48,7 +48,7 @@ require("yargs")
   )
   .command(
     "serve",
-    "Starts a web server to serve the /public directory",
+    "Starts a web server to serve the /publish directory",
     () => {},
     argv => {
       CameronJS.serve();

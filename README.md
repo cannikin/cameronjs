@@ -49,7 +49,7 @@ When you're ready for production you can create an optimized build with:
 
     cameronjs build
 
-Try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/public` directory):
+Try serving that optimized build locally to make sure everything is working as expected (everything is served from the `/publish` directory):
 
     cameronjs serve
 
@@ -155,7 +155,7 @@ module.exports = {
     // ...
     process.env.NODE_ENV === "production" &&
       require("@fullhuman/postcss-purgecss")({
-        content: ["./public/**/*.html"],
+        content: ["./publish/**/*.html"],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || [],
         whitelist: ["custom-class1", "custom-class2", "etc"]
       }),
