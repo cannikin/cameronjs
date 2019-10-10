@@ -2,7 +2,13 @@
 /* Feel free to delete me once you start changing that page.            */
 
 .cjs-code-snippet {
-  @apply text-sm bg-gray-300 text-gray-700 py-px px-1 rounded whitespace-no-wrap;
+  @apply text-sm bg-gray-300 text-gray-700 py-px px-1 rounded;
+}
+
+@screen md {
+  .cjs-code-snippet {
+    @apply whitespace-no-wrap;
+  }
 }
 
 .cjs-title {
