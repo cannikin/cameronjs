@@ -8,7 +8,7 @@
   },
   "homepage": "https://cameronjs.com",
   "license": "MIT",
-  "version": "0.5.3",
+  "version": "0.5.4",
   "dependencies": {
     "cameronjs-html-webpack-plugin": "^0.4.0",
     "replace-in-file": "^4.1.3",
